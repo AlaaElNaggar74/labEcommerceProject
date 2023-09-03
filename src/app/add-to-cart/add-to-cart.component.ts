@@ -9,6 +9,7 @@ import { Products } from '../interface/products';
 })
 export class AddToCartComponent {
   myProducts: any = [];
+  test: any;
   // myProducts:any=[{
   //   id: 1,
   //   title: 'iPhone 9',
@@ -673,9 +674,8 @@ export class AddToCartComponent {
     },
   ];
 
-
-  eleX:any=localStorage.getItem("myPr");
-  xId=JSON.parse(this.eleX);
+  eleX: any = localStorage.getItem('myPr');
+  xId = JSON.parse(this.eleX);
 
   constructor(public _ActivatedRoute: ActivatedRoute) {
     this._ActivatedRoute.queryParams.subscribe((data) => {
@@ -684,9 +684,7 @@ export class AddToCartComponent {
       for (const obj in data) {
         for (let index = 0; index < this.products.length; index++) {
           if (parseInt(data[obj]) == this.products[index].id) {
-
             this.myProducts.push(this.products[index]);
-
           }
         }
       }
@@ -694,10 +692,15 @@ export class AddToCartComponent {
     });
   }
 
-  // remFromCart(remId:any){
-    
+  remFromCart(remId: any) {
 
-  // }
+    // this.test = localStorage.getItem('myPr');
+    // this.myProducts = JSON.parse(this.test);
+    // console.log(this.myProducts);
 
-  // console.log("------------->> ",this.myProducts);
+    this.myProducts = this.myProducts.filter((ele: any) => {
+      return ele.id != remId && ele.id;
+    });
+    console.log(this.myProducts);
+  }
 }
