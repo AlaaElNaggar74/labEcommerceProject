@@ -10,6 +10,7 @@ import { Products } from '../interface/products';
 export class AddToCartComponent {
   myProducts: any = [];
   test: any;
+  newLocalStor:any=[];
   // myProducts:any=[{
   //   id: 1,
   //   title: 'iPhone 9',
@@ -678,29 +679,66 @@ export class AddToCartComponent {
   xId = JSON.parse(this.eleX);
 
   constructor(public _ActivatedRoute: ActivatedRoute) {
-    this._ActivatedRoute.queryParams.subscribe((data) => {
-      // this.myProducts=data;
 
-      for (const obj in data) {
-        for (let index = 0; index < this.products.length; index++) {
-          if (parseInt(data[obj]) == this.products[index].id) {
-            this.myProducts.push(this.products[index]);
-          }
+
+    for (const obj in this.xId) {
+      for (let index = 0; index < this.products.length; index++) {
+        if (parseInt(this.xId[obj]) == this.products[index].id) {
+          this.myProducts.push(this.products[index]);
         }
       }
-      console.log('..........cart', this.myProducts);
-    });
+    }
+
+    // this._ActivatedRoute.queryParams.subscribe((data) => {
+    //   // this.myProducts=data;
+
+    //   for (const obj in data) {
+    //     for (let index = 0; index < this.products.length; index++) {
+    //       if (parseInt(data[obj]) == this.products[index].id) {
+    //         this.myProducts.push(this.products[index]);
+    //       }
+    //     }
+    //   }
+    //   console.log('..........cart', this.myProducts);
+    // });
   }
 
   remFromCart(remId: any) {
+    this.newLocalStor=[];
+    this.eleX = localStorage.getItem('myPr');
+    this.xId = JSON.parse(this.eleX);
 
-    // this.test = localStorage.getItem('myPr');
-    // this.myProducts = JSON.parse(this.test);
+    for (const obj in this.xId) {
+      for (let index = 0; index < this.myProducts.length; index++) {
+        if (parseInt(this.xId[obj]) == this.products[index].id) {
+          this.myProducts.push(this.products[index]);
+        }
+      }
+    }
     // console.log(this.myProducts);
 
     this.myProducts = this.myProducts.filter((ele: any) => {
-      return ele.id != remId && ele.id;
+      return ele.id != remId ;
     });
-    console.log(this.myProducts);
+
+    // for (let index = 0; index < this.myProducts.length; index++) {
+    //   this.newLocalStor.push()
+      
+    // }
+    // this.newLocalStor = this.myProducts.map((ele: any) => {
+    //   return ele.id ;
+    // });
+
+    for (let index = 0; index < this.myProducts.length; index++) {
+      this.newLocalStor.push(this.myProducts[index].id);
+      
+    }
+    // console.log("000",this.newLocalStor);
+
+    localStorage.setItem("myPr",JSON.stringify(this.newLocalStor))
+    // let x=localStorage.getItem("myPr");
+    // console.log(JSON.stringify());
+    // console.log(typeof (JSON.parse(this.newLocalStor)));
+    // console.log(typeof (localStorage.getItem("myPr")));
   }
 }
