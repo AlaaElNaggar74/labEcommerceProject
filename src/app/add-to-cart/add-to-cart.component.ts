@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Products } from '../interface/products';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -10,7 +11,7 @@ import { Products } from '../interface/products';
 export class AddToCartComponent {
   myProducts: any = [];
   test: any;
-  newLocalStor:any=[];
+  newLocalStor: any = [];
   // myProducts:any=[{
   //   id: 1,
   //   title: 'iPhone 9',
@@ -678,9 +679,7 @@ export class AddToCartComponent {
   eleX: any = localStorage.getItem('myPr');
   xId = JSON.parse(this.eleX);
 
-  constructor(public _ActivatedRoute: ActivatedRoute) {
-
-
+  constructor(public _ActivatedRoute: ActivatedRoute, public _router: Router,public _location:Location ) {
     for (const obj in this.xId) {
       for (let index = 0; index < this.products.length; index++) {
         if (parseInt(this.xId[obj]) == this.products[index].id) {
@@ -704,7 +703,7 @@ export class AddToCartComponent {
   }
 
   remFromCart(remId: any) {
-    this.newLocalStor=[];
+    this.newLocalStor = [];
     this.eleX = localStorage.getItem('myPr');
     this.xId = JSON.parse(this.eleX);
 
@@ -718,12 +717,12 @@ export class AddToCartComponent {
     // console.log(this.myProducts);
 
     this.myProducts = this.myProducts.filter((ele: any) => {
-      return ele.id != remId ;
+      return ele.id != remId;
     });
 
     // for (let index = 0; index < this.myProducts.length; index++) {
     //   this.newLocalStor.push()
-      
+
     // }
     // this.newLocalStor = this.myProducts.map((ele: any) => {
     //   return ele.id ;
@@ -731,14 +730,19 @@ export class AddToCartComponent {
 
     for (let index = 0; index < this.myProducts.length; index++) {
       this.newLocalStor.push(this.myProducts[index].id);
-      
     }
     // console.log("000",this.newLocalStor);
 
-    localStorage.setItem("myPr",JSON.stringify(this.newLocalStor))
+    localStorage.setItem('myPr', JSON.stringify(this.newLocalStor));
     // let x=localStorage.getItem("myPr");
     // console.log(JSON.stringify());
     // console.log(typeof (JSON.parse(this.newLocalStor)));
     // console.log(typeof (localStorage.getItem("myPr")));
+  }
+  backHome() {
+    this._router.navigate(['home']);
+  }
+  backLastPage() {
+    this._location.back();
   }
 }
