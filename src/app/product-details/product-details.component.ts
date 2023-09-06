@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Products } from '../interface/products';
 import postjson from "../../data.json"
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
@@ -20,7 +21,7 @@ export class ProductDetailsComponent {
   products:Products[]=postjson;
  
 
-  constructor(public _ActivatedRoute: ActivatedRoute, public _router: Router) {
+  constructor(public _ActivatedRoute: ActivatedRoute, public _router: Router ,public _location:Location) {
     this.prodId = this._ActivatedRoute.snapshot.paramMap.get('proId');
 
     this.prodDetails = this.products.find((ele: any) => {
@@ -32,7 +33,10 @@ export class ProductDetailsComponent {
   }
 
   backHome() {
-    this._router.navigate(['home']);
+    // this._router.navigate(['home']);
+    this._location.back();
+
+
   }
   addPro(proId: any) {
  

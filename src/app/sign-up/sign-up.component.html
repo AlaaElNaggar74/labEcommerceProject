@@ -1,99 +1,205 @@
-<div class="d mt-5 pb-5">
-  <div class="m-auto  col-md-6 p-4 rounded-2 bg-body-secondary">
-    <h2 class="text-center my-3">Create New Account</h2>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label"
-        >First Name</label
+<div
+  class="m-auto col-md-8 col-lg-6 p-4 rounded-2 bg-body-secondary border border-1 border-black"
+>
+  <h2 class="text-center my-3">Register-Page</h2>
+  <form
+    [formGroup]="userForm"
+    (ngSubmit)="submitUserForm()"
+    class="p-4 rounded-2 bg-body-secondary border border-1 border-black"
+  >
+    <div class="mb-4">
+      <label for="Name" class="form-label fw-bold"
+        >Name</label
       >
-      <input
-        type="text"
-        class="form-control"
-        id="exampleFormControlInput1"
-        placeholder="Enter Your First Name"
-      />
-    </div>
 
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Last Name</label>
       <input
+        formControlName="name"
         type="text"
-        class="form-control"
-        id="exampleFormControlInput1"
-        placeholder="Enter Your Last Name"
+        class="form-control shadow-none"
+        id="Name"
+        placeholder="Enter Your Name"
+        [ngStyle]="{
+          'border-color':
+            userForm.controls['name'].touched &&
+            userForm.controls['name'].invalid
+              ? 'red'
+              : 'grey'
+        }"
       />
-    </div>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Mobile</label>
-      <input
-        type="text"
-        class="form-control"
-        id="exampleFormControlInput1"
-        placeholder="Enter Your Mobile"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Gender</label>
-      <div class="gen d-flex align-items-center p-2 bg-white rounded-2">
-        <div class="form-check  me-3">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-              checked
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              Male
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckChecked"
-              
-            />
-            <label class="form-check-label" for="flexCheckChecked">
-              Female
-            </label>
-          </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          userForm.controls['name'].touched && userForm.controls['name'].invalid
+        "
+      >
+        <small *ngIf="userForm.controls['name']?.errors?.['required']"
+          >Name is a required field!</small
+        >
+        <small *ngIf="userForm.controls['name']?.errors?.['minlength']"
+          >Length Should Be More Than 5 Char!!!
+        </small>
       </div>
- 
     </div>
 
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label"
-        >Email address</label
+    <div class="mb-4">
+      <label for="email" class="form-label fw-bold"
+        >E-Mail</label
       >
       <input
+        formControlName="email"
         type="email"
-        class="form-control"
-        id="exampleFormControlInput1"
-        placeholder="name@example.com"
+        class="form-control shadow-none"
+        id="email"
+        placeholder="Enter Your E-Mail"
+        [ngStyle]="{
+          'border-color':
+            userForm.controls['email'].touched &&
+            userForm.controls['email'].invalid
+              ? 'red'
+              : 'grey'
+        }"
       />
+      <div
+        class="text-danger"
+        *ngIf="
+          userForm.controls['email'].touched &&
+          userForm.controls['email'].invalid
+        "
+      >
+        <small *ngIf="userForm.controls['email']?.errors?.['required']"
+          >E-Mail is a required field!</small
+        >
+        <small *ngIf="userForm.controls['email']?.errors?.['pattern']"
+          >E-Mail Don't Match !!!
+        </small>
+        <!-- <small *ngIf="userForm.controls['email']?.errors?.['email']"
+          >E-Mail Don't Match  !!!
+        </small> -->
+      </div>
+    </div>
+    <div class="mb-4">
+      <label for="userName" class="form-label fw-bold"
+        >User-Name</label
+      >
+      <input
+        formControlName="userName"
+        type="text"
+        class="form-control shadow-none"
+        id="userName "
+        placeholder="Enter Your User-Name"
+        [ngStyle]="{
+          'border-color':
+            userForm.controls['userName'].touched &&
+            userForm.controls['userName'].invalid
+              ? 'red'
+              : 'grey'
+        }"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          userForm.controls['userName'].touched &&
+          userForm.controls['userName'].invalid
+        "
+      >
+        <small *ngIf="userForm.controls['userName']?.errors?.['required']"
+          >UserName is a required field!</small
+        >
+        <small *ngIf="userForm.controls['userName']?.errors?.['pattern']"
+          >UserName Don't Match !!!
+        </small>
+        <!-- <small *ngIf="userForm.controls['email']?.errors?.['email']"
+          >E-Mail Don't Match  !!!
+        </small> -->
+      </div>
     </div>
 
-    <div class="form-check">
+    <div class="mb-4">
+      <label for="Password" class="form-label fw-bold"
+        >Password</label
+      >
       <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="flexCheckDefault"
+        formControlName="password"
+        type="password"
+        class="form-control shadow-none"
+        id="Password"
+        placeholder="Enter Your Password"
+        [ngStyle]="{
+          'border-color':
+            userForm.controls['password'].touched &&
+            userForm.controls['password'].invalid
+              ? 'red'
+              : 'grey'
+        }"
       />
-      <label class="form-check-label" for="flexCheckDefault">
-        Remember Me
-      </label>
+      <div
+        class="text-danger"
+        *ngIf="
+          userForm.controls['password'].touched &&
+          userForm.controls['password'].invalid
+        "
+      >
+        <small *ngIf="userForm.controls['password']?.errors?.['required']"
+          >password is a required field!</small
+        >
+        <small *ngIf="userForm.controls['password']?.errors?.['minLength']"
+        >Password at Least 8 Char !!!
+      </small>
+        <small *ngIf="userForm.controls['password']?.errors?.['pattern']"
+          >Password Don't Match !!!
+        </small>
+       
+        <!-- <small *ngIf="userForm.controls['email']?.errors?.['email']"
+          >E-Mail Don't Match  !!!
+        </small> -->
+      </div>
+    </div>
+    <div class="mb-2">
+      <label for="confirmPassword" class="form-label fw-bold"
+        >Confirmed-Password</label
+      >
+      <input
+        formControlName="confirmPassword"
+        type="password"
+        class="form-control shadow-none"
+        id="confirmPassword"
+        placeholder="Enter Your Confirmed-Password"
+        [ngStyle]="{
+          'border-color':
+            userForm.controls['confirmPassword'].touched &&
+            userForm.controls['confirmPassword'].invalid
+              ? 'red'
+              : 'grey'
+        }"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          userForm.controls['confirmPassword'].touched &&
+          userForm.controls['confirmPassword'].invalid
+        "
+      >
+        <small
+          *ngIf="userForm.controls['confirmPassword']?.errors?.['passwordMismatch']"
+          >ConfirmPassword And Password Don't Match!</small
+        >
+           </div>
     </div>
 
     <div class="bt">
-      <button class="py-2 px-4 btn btn-success mt-4">Submit</button>
-    </div>
+      <button 
+      class="py-2 px-4 btn btn-success mt-4"
+      [disabled]="userForm.invalid"
+      
+      >Submit</button>
 
-    <div class="bb text-center mt-5">
-      <button class="py-2 px-4 btn btn-danger mt-4" (click)="bckHome()">
-        Back To Home Page
-      </button>
+
     </div>
+  </form>
+
+  <div class="bb text-center mt-3">
+    <button class="py-2 px-4 btn btn-danger mt-4" routerLink="/signin">
+      Back To Login
+    </button>
   </div>
 </div>

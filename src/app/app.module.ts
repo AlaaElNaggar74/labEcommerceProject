@@ -11,6 +11,15 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { MainproductcompComponent } from './mainproductcomp/mainproductcomp.component';
+import { CategoryComponent } from './category/category.component';
+import { SmartphonesComponent } from './category/smartphones/smartphones.component';
+import { LaptopsComponent } from './category/laptops/laptops.component';
+import { FragrancesComponent } from './category/fragrances/fragrances.component';
+import { SkincareComponent } from './category/skincare/skincare.component';
+import { GroceriesComponent } from './category/groceries/groceries.component';
+import { HomeDecorationComponent } from './category/home-decoration/home-decoration.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,11 +31,21 @@ import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
     SignInComponent,
     NavbarComponent,
     NotfoundComponent,
-    AddToCartComponent
+    AddToCartComponent,
+    MainproductcompComponent,
+    CategoryComponent,
+    SmartphonesComponent,
+    LaptopsComponent,
+    FragrancesComponent,
+    SkincareComponent,
+    GroceriesComponent,
+    HomeDecorationComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+  BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

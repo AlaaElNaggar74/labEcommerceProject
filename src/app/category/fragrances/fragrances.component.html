@@ -1,0 +1,25 @@
+<div class="row">
+  <ng-container class="freItem" *ngFor="let item of fragrancesCat">
+    <div class="col-md-6 col-lg-4 mb-3">
+      <div class="card">
+        <img
+          [src]="item.images[0]"
+          class="card-img-top"
+          alt="..."
+          height="200px"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ item.title }}</h5>
+          <p class="card-text">{{ item.description.slice(0, 25) }}. . .</p>
+          <h6 class="card-text">Price : {{ item.price | currency }}</h6>
+          <h6 [class]="item.stock > 0 ? 'text-primary ' : 'text-danger '">
+            Stock: {{ item.stock }}
+          </h6>
+          <button class="btn btn-primary" (click)="getProductInfo(item.id)">
+            Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

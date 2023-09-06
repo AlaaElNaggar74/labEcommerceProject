@@ -1,48 +1,82 @@
-<div class="d  mt-5">
-  <div class="m-auto col-11 col-md-6 p-4 rounded-2 bg-body-secondary">
-    <h2 class="text-center my-3">Sign In Page</h2>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Name</label>
-      <input
-        type="name"
-        class="form-control"
-        id="exampleFormControlInput1"
-        placeholder="Enter Your Name"
-      />
-    </div>
+<div class="d mt-5 pb-5">
+  <div
+    class="m-auto col-md-8 col-lg-6 p-4 rounded-2 bg-body-secondary border border-1 border-black"
+  >
+    <h2 class="text-center my-3">Login</h2>
+    <form
+      #userForm="ngForm"
+      (ngSubmit)="submitGameForm(userForm)"
+      class="mb-3 border border-1 border-black rounded-1 p-3 mb-5"
 
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label"
-        >Email address</label
-      >
+    >
+      <label for="email" class="form-label fw-bold">Email Address</label>
       <input
         type="email"
-        class="form-control"
-        id="exampleFormControlInput1"
-        placeholder="name@example.com"
+        class="form-control shadow-none"
+        id="email"
+        placeholder="Enter Your First Name"
+        name="email"
+        ngModel
+        #email="ngModel"
+        required
+        pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        [ngStyle]="{'border-color': (email?.errors?.['pattern'] && email?.invalid ) ? 'red' : 'grey'}"
+
       />
-    </div>
 
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="flexCheckDefault"
-      />
-      <label class="form-check-label" for="flexCheckDefault">
-        Remember Me
-      </label>
-    </div>
 
-    <div class="bt">
-      <button class="py-2 px-4 btn btn-success mt-4">Submit</button>
-    </div>
+      <div class="text-danger" *ngIf="email?.touched && email?.invalid">
+        <small *ngIf="email?.errors?.['required']"
+          >Email is a required field!</small
+        >
+        <small *ngIf="email?.errors?.['pattern']"
+          >This is not a valid Email!!!
+        </small>
+      </div>
 
-    <div class="bb text-center mt-5">
-      <button class="py-2 px-4 btn btn-danger mt-4" (click)="bckHome()">
-        Back To Home Page
-      </button>
+      <div class="mb-3 mt-3">
+        <label for="password" class="form-label fw-bold "
+          >Password</label
+        >
+        <input
+          type="password"
+          class="form-control shadow-none"
+          id="password"
+          placeholder="Enter Your Password"
+          name="password"
+          ngModel
+          #password="ngModel"
+          required
+          [ngStyle]="{'border-color': (password?.errors?.['pattern'] && password?.invalid)? 'red' : 'grey'}"
+
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+
+        />
+
+        <div class="text-danger" *ngIf="password?.touched && password?.invalid">
+          <small *ngIf="password?.errors?.['required']">Required Field</small>
+          <small *ngIf="password?.errors?.['pattern']"
+            >Passwords Don't Match
+          </small>
+        </div>
+      </div>
+
+      <div class="bt">
+        <input
+          type="submit"
+          value="Submit"
+          class="py-2 px-4 btn btn-success mt-4 w-100"
+          [disabled]="userForm.invalid"
+          routerLink="/home"
+        />
+      </div>
+    </form>
+
+    <div class="mt-4">
+      <h5 class="text-center mt-4">
+        Don't Have Account?
+        <a class="text-success " routerLink="/signup">Register</a>
+      </h5>
     </div>
   </div>
 </div>
