@@ -8,9 +8,7 @@
     class="p-4 rounded-2 bg-body-secondary border border-1 border-black"
   >
     <div class="mb-4">
-      <label for="Name" class="form-label fw-bold"
-        >Name</label
-      >
+      <label for="Name" class="form-label fw-bold">Name</label>
 
       <input
         formControlName="name"
@@ -42,9 +40,7 @@
     </div>
 
     <div class="mb-4">
-      <label for="email" class="form-label fw-bold"
-        >E-Mail</label
-      >
+      <label for="email" class="form-label fw-bold">E-Mail</label>
       <input
         formControlName="email"
         type="email"
@@ -72,15 +68,11 @@
         <small *ngIf="userForm.controls['email']?.errors?.['pattern']"
           >E-Mail Don't Match !!!
         </small>
-        <!-- <small *ngIf="userForm.controls['email']?.errors?.['email']"
-          >E-Mail Don't Match  !!!
-        </small> -->
+     
       </div>
     </div>
     <div class="mb-4">
-      <label for="userName" class="form-label fw-bold"
-        >User-Name</label
-      >
+      <label for="userName" class="form-label fw-bold">User-Name</label>
       <input
         formControlName="userName"
         type="text"
@@ -108,16 +100,12 @@
         <small *ngIf="userForm.controls['userName']?.errors?.['pattern']"
           >UserName Don't Match !!!
         </small>
-        <!-- <small *ngIf="userForm.controls['email']?.errors?.['email']"
-          >E-Mail Don't Match  !!!
-        </small> -->
+      
       </div>
     </div>
 
     <div class="mb-4">
-      <label for="Password" class="form-label fw-bold"
-        >Password</label
-      >
+      <label for="Password" class="form-label fw-bold">Password</label>
       <input
         formControlName="password"
         type="password"
@@ -143,15 +131,12 @@
           >password is a required field!</small
         >
         <small *ngIf="userForm.controls['password']?.errors?.['minLength']"
-        >Password at Least 8 Char !!!
-      </small>
+          >Password at Least 8 Char !!!
+        </small>
         <small *ngIf="userForm.controls['password']?.errors?.['pattern']"
           >Password Don't Match !!!
         </small>
-       
-        <!-- <small *ngIf="userForm.controls['email']?.errors?.['email']"
-          >E-Mail Don't Match  !!!
-        </small> -->
+
       </div>
     </div>
     <div class="mb-2">
@@ -174,26 +159,18 @@
       />
       <div
         class="text-danger"
-        *ngIf="
-          userForm.controls['confirmPassword'].touched &&
-          userForm.controls['confirmPassword'].invalid
-        "
+        *ngIf="userForm.controls['confirmPassword'].touched"
       >
-        <small
-          *ngIf="userForm.controls['confirmPassword']?.errors?.['passwordMismatch']"
+        <small *ngIf="userForm.errors?.['passwordmatcherror']"
           >ConfirmPassword And Password Don't Match!</small
         >
-           </div>
+      </div>
     </div>
 
     <div class="bt">
-      <button 
-      class="py-2 px-4 btn btn-success mt-4"
-      [disabled]="userForm.invalid"
+      <button class="py-2 px-4 btn btn-success mt-4" [disabled]="userForm.invalid">Submit</button>
+
       
-      >Submit</button>
-
-
     </div>
   </form>
 
