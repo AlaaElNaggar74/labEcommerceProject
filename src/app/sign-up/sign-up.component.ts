@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustvalidatorService } from '../services/-custvalidator.service';
+
 
 import {
 Validators,
   FormBuilder,
 } from '@angular/forms';
-// import { CustomvaldiatorxService } from '../services/customvaldiatorx.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,7 +18,7 @@ export class SignUpComponent {
   constructor(
     public fb: FormBuilder,
     public _router: Router,
-    // public _customvalidator: CustomvaldiatorxService
+    public _CustvalidatorService:CustvalidatorService
   ) {}
 
   userForm = this.fb.group(
@@ -38,13 +39,13 @@ export class SignUpComponent {
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     }
-    // ,
-    // {
-    //   validator: this._customvalidator.passwordMatchValidator(
-    //     'password',
-    //     'confirmPassword'
-    //   ),
-    // }
+    ,
+    {
+      validator: this._CustvalidatorService.passwordMatchValidator(
+        'password',
+        'confirmPassword'
+      ),
+    }
   );
 
   submitUserForm() {
